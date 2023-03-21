@@ -1,0 +1,131 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+:root {
+  --cell-size: 100px;
+  --mark-size: calc(var(--cell-size) * 0.9);
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+.board {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  /* transform: translateY(-50%); */
+  /* row-gap: 0px; */
+  /* margin-top: 50vh; */
+}
+.board.x .cell:not(.x):not(.o):hover:after,
+.board.x .cell:not(.x):not(.o):hover::before {
+  content: "";
+  width: calc(var(--mark-size) * 0.15);
+  height: var(--mark-size);
+  background-color: rgba(0, 0, 0, 0.195);
+  position: absolute;
+}
+.board.x .cell:hover::after {
+  transform: rotate(45deg);
+}
+.board.x .cell:hover::before {
+  transform: rotate(-45deg);
+}
+.board.o .cell:not(.x):not(.o):hover:after {
+  content: "";
+  width: var(--mark-size);
+  height: var(--mark-size);
+  border-radius: 50%;
+  position: absolute;
+  border: 10px solid lightgray;
+}
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  /* background-color: maroon; */
+  border: 2px black solid;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+  border-top: none;
+}
+
+.cell:nth-child(3n + 1) {
+  border-left: none;
+}
+.cell:nth-child(3n + 3) {
+  border-right: none;
+}
+.cell:nth-child(n + 7) {
+  border-bottom: none;
+}
+.cell.x::after,
+.cell.x::before {
+  content: "";
+  width: calc(var(--mark-size) * 0.15);
+  height: var(--mark-size);
+  background-color: maroon;
+  position: absolute;
+}
+.cell.x,
+.cell.o {
+  cursor: not-allowed;
+}
+.cell.x::after {
+  transform: rotate(45deg);
+}
+.cell.x::before {
+  transform: rotate(-45deg);
+}
+
+.cell.o::after {
+  content: "";
+  width: var(--mark-size);
+  height: var(--mark-size);
+  border-radius: 50%;
+  position: absolute;
+  border: 10px solid green;
+}
+.result-div {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.result-div.show{
+    display: flex;
+}
+.result-div .result-text {
+  font-size: 5rem;
+  color: white;
+}
+.result-div .restart-btn {
+  font-size: 3rem;
+  background-color: white;
+  width: fit-content;
+  cursor: pointer;
+  padding: 3px 10px;
+}
+.result-div .restart-btn:hover {
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+}
