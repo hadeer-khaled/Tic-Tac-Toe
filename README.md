@@ -1,3 +1,3 @@
 # Tic Tac Toe Game using JavaScript
 
-[Demo Video](video.gif)
+![Demo Video](video.gif)
