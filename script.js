@@ -30,15 +30,12 @@ function startGame() {
     cells.forEach(cell => {
         cell.addEventListener("click", handelClick, { once: true })
     })
-
 }
 function handelClick(e) {
     let cell = e.currentTarget
     const currentClass = circleTurn ? O_CLASS : X_CLASS;
-
     // Place Mark
     placeMark(cell, currentClass);
-
     // Check For a winner
     if (winner(currentClass)) {
         endGame(true)
@@ -102,6 +99,6 @@ function reStart() {
     cells.forEach(cell => {
         cell.classList.remove(X_CLASS)
         cell.classList.remove(O_CLASS)
-        cell.removeEventListener("click", handelClick)
     })
+    startGame()
 }
